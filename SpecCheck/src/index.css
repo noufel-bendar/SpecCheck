@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+ .search{
+  @apply  w-0 group-hover:w-64 transition-all duration-300 h-6 mt-1 rounded-full group-hover:border group-hover:border-gray-400 px-3 py-1 focus:outline-none ;
+ }
+}

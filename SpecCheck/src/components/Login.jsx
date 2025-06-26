@@ -1,45 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
+  const [login, setLogin] = useState(true);
+  const [role, setRole] = useState('buyer');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+        if (email === '' || password === '') {
+      setError('Email or Password are required');
+      return;
+    }
+    
+    if (!login && password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+  
+     setError('');
+  };
+
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-navy">
-        <img src="/src/assets/images/icon12.png" alt="icon" />
+    <>
+    <p className='bg-navy  text-white font-extrabold text-5xl pt-8 px-11 tracking-widest uppercase '> welcome to SpecCheck</p>
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-navy">
+      
+      <img src="/src/assets/images/icon12.png" alt="icon" />
       <div className="bg-royal bg-opacity-90 p-8 rounded-2xl shadow-lg w-96">
-        <h2 className="text-2xl font-bold text-center mb-6 text-white">Login</h2>
-        
-        <form className="space-y-5">
+        <h2 className="text-2xl font-bold text-center mb-6 text-white tracking-widest">
+          {login ? 'Login' : 'Sign Up'}
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {!login && (
+            <>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-white">Username</label>
+                <input
+                  type="text"
+                  placeholder="Enter your username"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1 text-white">I am a:</label>
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                >
+                  <option value="buyer">Buyer</option>
+                  <option value="seller">Seller</option>
+                </select>
+              </div>
+            </>
+          )}
+
           <div>
             <label className="block text-sm font-medium mb-1 text-white">Email</label>
-            <input 
-              type="email" 
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" 
-              placeholder="Enter your email" 
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-1 text-white">Password</label>
-            <input 
-              type="password" 
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" 
-              placeholder="Enter your password" 
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <button 
-            type="submit" 
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition"
+          {!login && (
+            <div>
+              <label className="block text-sm font-medium mb-1 text-white">Confirm Password</label>
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+          )}
+
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition tracking-widest hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            Login
+            {login ? 'Login' : 'Sign Up'}
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm  text-white">
-          Don’t have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign up</a>
+        <p className="mt-4 text-center text-sm text-gray-300">
+          {login ? (
+            <>
+              Don’t have an account?{' '}
+              <button
+                onClick={() => setLogin(false)}
+                className="text-blue-300 hover:underline"
+              >
+                Sign up
+              </button>
+            </>
+          ) : (
+            <>
+              Already have an account?{' '}
+              <button
+                onClick={() => setLogin(true)}
+                className="text-blue-300 hover:underline"
+              >
+                Login
+              </button>
+            </>
+          )}
         </p>
       </div>
     </div>
+    </>
   );
 };
 
