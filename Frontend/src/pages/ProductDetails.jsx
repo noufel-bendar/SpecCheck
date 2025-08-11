@@ -4,6 +4,7 @@ import Rating from "../utils/Rating";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "../components/Header";
+import { API_BASE } from "../utils/config";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -14,13 +15,13 @@ function ProductDetails() {
     AOS.init({ duration: 800, once: true });
 
     // Fetch single product
-    fetch(`http://localhost:8000/api/products/${id}/`)
+    fetch(`${API_BASE}/api/products/${id}/`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((err) => console.error("Failed to fetch product", err));
 
     // Fetch all products
-    fetch(`http://localhost:8000/api/products/`)
+    fetch(`${API_BASE}/api/products/`)
       .then((res) => res.json())
       .then((data) => setAllProducts(data))
       .catch((err) => console.error("Failed to fetch products", err));
@@ -151,7 +152,7 @@ function ProductDetails() {
                 data-aos-delay={idx * 100}
               >
                 <img
-                  src={`http://localhost:8000${comp.image}`}
+                  src={`${API_BASE}${comp.image}` }
                   alt={comp.model}
                   className="w-full h-32 object-contain bg-gray-50 rounded-lg"
                 />

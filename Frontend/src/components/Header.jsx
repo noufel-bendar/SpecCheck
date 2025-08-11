@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import logo from "../assets/images/icon12.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE } from "../utils/config";
 
 const manuel = [
   { id: 1, name: "Home", link: "/home" },
@@ -27,7 +28,7 @@ function Header({ onSearch, onAboutClick, onShopClick }) {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://localhost:8000/api/auth/profile/", {
+        .get(`${API_BASE}/api/auth/profile/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
