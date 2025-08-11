@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { API_BASE } from '../utils/config';
 
 function Hero() {
   const [products, setProducts] = useState([]);
@@ -22,7 +23,7 @@ function Hero() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
-    fetch("http://localhost:8000/api/products/")
+    fetch(`${API_BASE}/api/products/`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -52,7 +53,7 @@ function Hero() {
 
                 <div className='order-1 sm:order-2 flex justify-center' data-aos="zoom-in">
                   <img
-                    src={`http://localhost:8000${item.image}`}
+                    src={`${API_BASE}${item.image}`}
                     alt={item.title}
                     className='w-[400px] h-[400px] sm:h-[450px] sm:scale-105 lg:scale-110 object-contain mx-auto drop-shadow-[-8px-4px-6px-rgba(0,0,0,.4)]'
                   />
