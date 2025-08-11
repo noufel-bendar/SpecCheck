@@ -3,8 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "npm run dev --prefix Frontend",
+    "setup:backend": "pip install --user Django==5.2.4 djangorestframework==3.16.0 djangorestframework_simplejwt==5.5.0 django-cors-headers==4.7.0 dj-database-url==3.0.1 whitenoise==6.9.0 pillow==11.3.0",
+    "dev:backend": "cd backend && DEBUG=True python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000",
+    "dev:frontend": "npm run dev --prefix Frontend",
+    "dev:full": "concurrently -k -n backend,frontend -c blue,green \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev": "npm run dev:frontend",
     "build": "npm ci --prefix Frontend && npm run build --prefix Frontend",
     "preview": "npm run preview --prefix Frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
