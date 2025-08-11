@@ -1,18 +1,10 @@
 {
   "name": "speccheck",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.5.0"
-  },
-  "devDependencies": {
-    "vite": "^4.0.0",
-    "@vitejs/plugin-react": "^3.0.0"
+    "dev": "npm run dev --prefix Frontend",
+    "build": "npm ci --prefix Frontend && npm run build --prefix Frontend",
+    "preview": "npm run preview --prefix Frontend"
   }
 }
