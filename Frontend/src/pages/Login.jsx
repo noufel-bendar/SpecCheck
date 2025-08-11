@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from "../config";
 
 const Login = () => {
   const [login, setLogin] = useState(true);
@@ -43,7 +44,7 @@ const Login = () => {
       }
 
       if (login) {
-        const res = await axios.post('http://localhost:8000/api/auth/login/', {
+        const res = await axios.post(`${API_BASE_URL}/api/auth/login/`, {
           username,
           password,
         });
@@ -63,7 +64,7 @@ const Login = () => {
 
         navigate('/home');
       } else {
-        const res = await axios.post('http://localhost:8000/api/auth/register/', {
+        const res = await axios.post(`${API_BASE_URL}/api/auth/register/`, {
           username,
           email,
           password,
