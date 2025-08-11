@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Rating from "../utils/Rating";
+import { API_BASE_URL } from "../config";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -14,7 +15,7 @@ function ProductGrid({ searchTerm = "" }) {
   const isLoggedIn = !!token;
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/products/")
+    fetch(`${API_BASE_URL}/api/products/`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Failed to fetch products", err));
