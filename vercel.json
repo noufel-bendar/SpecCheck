@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd Frontend && npm ci --no-audit --no-fund && npm run build",
+  "outputDirectory": "Frontend/dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

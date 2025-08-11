@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { API_BASE } from "../utils/config";
 
 
 function ProductCard({ id,title, model, image, price, description }) {
@@ -8,7 +9,7 @@ function ProductCard({ id,title, model, image, price, description }) {
       data-aos="fade-up"
     >
       <img
-  src={`http://localhost:8000${image}`}
+  src={`${API_BASE}${image}`}
   alt={title}
   className="w-full h-48 object-contain bg-gray-100"
 />

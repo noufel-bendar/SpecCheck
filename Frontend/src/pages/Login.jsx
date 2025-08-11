@@ -3,8 +3,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const Login = () => {
+import { API_BASE } from '../utils/config';
+import logo from "../assets/images/icon12.png";
+ 
+ const Login = () => {
   const [login, setLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -43,7 +45,7 @@ const Login = () => {
       }
 
       if (login) {
-        const res = await axios.post('http://localhost:8000/api/auth/login/', {
+        const res = await axios.post(`${API_BASE}/api/auth/login/`, {
           username,
           password,
         });
@@ -63,7 +65,7 @@ const Login = () => {
 
         navigate('/home');
       } else {
-        const res = await axios.post('http://localhost:8000/api/auth/register/', {
+        const res = await axios.post(`${API_BASE}/api/auth/register/`, {
           username,
           email,
           password,
@@ -96,7 +98,7 @@ const Login = () => {
 
       <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-navy px-6 sm:px-12">
         <div data-aos="fade-right" className="hidden md:block mr-8">
-          <img src="/src/assets/images/icon12.png" alt="icon" className="w-[320px] h-auto" />
+          <img src={logo} alt="icon" className="w-[320px] h-auto" />
         </div>
 
         <div key={login ? 'login' : 'signup'} className="bg-royal bg-opacity-90 p-8 rounded-2xl shadow-lg w-96" data-aos="fade-left">
