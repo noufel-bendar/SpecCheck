@@ -1,1 +1,16 @@
+<<<<<<< Current (Your changes)
 # Netlify config has moved to the project root. This file is intentionally empty.
+=======[build]
+  base = "Frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+# Netlify config has moved to the project root. This file is intentionally empty.
+>>>>>>> Incoming (Background Agent changes)
