@@ -10,25 +10,44 @@ function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
 
     // Fetch single product
     fetch(`${API_BASE}/api/products/${id}/`)
-      .then((res) => res.json())
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+        }
+        return res.json();
+      })
       .then((data) => setProduct(data))
-      .catch((err) => console.error("Failed to fetch product", err));
+      .catch((err) => {
+        console.error("Failed to fetch product", err);
+        setError("Failed to load product.");
+      });
 
     // Fetch all products
     fetch(`${API_BASE}/api/products/`)
-      .then((res) => res.json())
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+        }
+        return res.json();
+      })
       .then((data) => setAllProducts(data))
-      .catch((err) => console.error("Failed to fetch products", err));
+      .catch((err) => {
+        console.error("Failed to fetch products", err);
+        setAllProducts([]);
+      });
   }, [id]);
 
   if (!product) {
-    return <div className="text-center mt-20 text-red-600">Loading product...</div>;
+    return <div className="text-center mt-20 text-red-600">{error || "Loading product..."}</div>;
   }
 
   const rating = Rating(
