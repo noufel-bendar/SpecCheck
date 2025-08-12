@@ -26,7 +26,11 @@ function ProductGrid({ searchTerm = "" }) {
       })
       .then((data) => {
 <<<<<<< Current (Your changes)
+<<<<<<< Current (Your changes)
         setProducts(data);
+=======
+        setProducts(Array.isArray(data) ? data : []);
+>>>>>>> Incoming (Background Agent changes)
 =======
         setProducts(Array.isArray(data) ? data : []);
 >>>>>>> Incoming (Background Agent changes)
