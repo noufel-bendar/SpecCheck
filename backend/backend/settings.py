@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+from urllib.parse import urlparse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,11 +82,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Database configuration: use Postgres (with SSL) if DATABASE_URL is set, otherwise local SQLite
+# Database configuration: use Postgres (with SSL only for postgres) if DATABASE_URL is set, otherwise local SQLite
 DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
+    scheme = urlparse(DATABASE_URL).scheme
+    require_ssl = scheme in ("postgres", "postgresql")
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=require_ssl)
     }
 else:
     DATABASES = {
