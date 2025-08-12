@@ -51,20 +51,6 @@ class LoginView(APIView):
             username = request.data.get("username")
             password = request.data.get("password")
 
-<<<<<<< Current (Your changes)
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                "token": str(refresh.access_token),
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "email": user.email,
-                "username": user.username
-            }, status=status.HTTP_200_OK)
-        else:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
-=======
             user = authenticate(username=username, password=password)
             if user is not None:
                 refresh = RefreshToken.for_user(user)
@@ -79,4 +65,3 @@ class LoginView(APIView):
                 return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as exc:
             return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
->>>>>>> Incoming (Background Agent changes)

@@ -25,7 +25,11 @@ function ProductGrid({ searchTerm = "" }) {
         return res.json();
       })
       .then((data) => {
+<<<<<<< Current (Your changes)
         setProducts(data);
+=======
+        setProducts(Array.isArray(data) ? data : []);
+>>>>>>> Incoming (Background Agent changes)
         setLoadError("");
       })
       .catch((err) => {
@@ -40,11 +44,13 @@ function ProductGrid({ searchTerm = "" }) {
     setCurrentPage(1);
   };
 
+  const safeProducts = Array.isArray(products) ? products : [];
+
   const filteredProducts = !isLoggedIn
-    ? products
+    ? safeProducts
     : selectedCategory === "all"
-    ? products
-    : products
+    ? safeProducts
+    : safeProducts
         .map((product) => {
           const { categories } = Rating(
             product.cpu_cores || 0,
@@ -64,8 +70,8 @@ function ProductGrid({ searchTerm = "" }) {
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
     const filteredBySearch = filteredProducts.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.model.toLowerCase().includes(searchTerm.toLowerCase())
+    (product.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (product.model || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
  const displayedProducts = filteredBySearch.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
