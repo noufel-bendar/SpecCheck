@@ -66,7 +66,7 @@ function ProductGrid({ searchTerm = "" }) {
   const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
 
     const filteredBySearch = filteredProducts.filter((product) =>
->>>>
+
     (product.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
     (product.model || "").toLowerCase().includes(searchTerm.toLowerCase())
   );

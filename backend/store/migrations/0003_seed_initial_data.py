@@ -1,5 +1,6 @@
 from django.db import migrations
 import os
+from django.contrib.auth.hashers import make_password
 
 
 def seed_products_and_admin(apps, schema_editor):
@@ -26,7 +27,7 @@ def seed_products_and_admin(apps, schema_editor):
                 'keyboard': 'Backlit',
                 'os': 'Windows 11',
                 'price': 1399,
-                'description': 'Portable powerhouse with great battery and bright high‑res display.',
+                'description': 'Portable powerhouse with great battery and bright high-res display.',
                 'weight': 1.3,
             },
             {
@@ -139,9 +140,13 @@ def seed_products_and_admin(apps, schema_editor):
         email = os.environ.get('ADMIN_EMAIL', 'admin@example.com')
         password = os.environ.get('ADMIN_PASSWORD', 'admin123')
 
-        # Create the superuser with a hashed password
-        admin = User(username=username, email=email, is_staff=True, is_superuser=True)
-        admin.set_password(password)
+        admin = User(
+            username=username,
+            email=email,
+            is_staff=True,
+            is_superuser=True,
+            password=make_password(password)  # encrypt password
+        )
         admin.save()
 
 
