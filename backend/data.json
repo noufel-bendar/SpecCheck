@@ -1,0 +1,642 @@
+[
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "title": "SpecCheck Pro 14",
+    "model": "SC-P14-2025",
+    "image": "",
+    "processor": "Intel Core i7-1360P",
+    "cpu_cores": 12,
+    "cpu_clock_speed": 4.8,
+    "battery_life": "10",
+    "ram": 16,
+    "storage": "512GB SSD",
+    "gpu": "Intel Iris Xe",
+    "gpu_score": 3200,
+    "screen_resolution": "2560x1600",
+    "refresh_rate": 120,
+    "display": "14\" IPS",
+    "keyboard": "Backlit",
+    "os": "Windows 11",
+    "price": 1399,
+    "description": "Portable powerhouse with great battery and bright highÔÇæres display.",
+    "weight": 1.3,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "title": "SpecCheck Gamer 15",
+    "model": "SC-G15-RTX",
+    "image": "",
+    "processor": "AMD Ryzen 7 7840HS",
+    "cpu_cores": 8,
+    "cpu_clock_speed": 5.1,
+    "battery_life": "6",
+    "ram": 32,
+    "storage": "1TB SSD",
+    "gpu": "NVIDIA RTX 4060",
+    "gpu_score": 13500,
+    "screen_resolution": "1920x1080",
+    "refresh_rate": 165,
+    "display": "15.6\" IPS",
+    "keyboard": "RGB",
+    "os": "Windows 11",
+    "price": 1699,
+    "description": "High refresh gaming laptop with strong GPU performance.",
+    "weight": 2.2,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "title": "SpecCheck Creator 16",
+    "model": "SC-C16-OLED",
+    "image": "",
+    "processor": "Intel Core i9-13900H",
+    "cpu_cores": 14,
+    "cpu_clock_speed": 5.4,
+    "battery_life": "8",
+    "ram": 32,
+    "storage": "2TB SSD",
+    "gpu": "NVIDIA RTX 4070",
+    "gpu_score": 16000,
+    "screen_resolution": "3840x2400",
+    "refresh_rate": 120,
+    "display": "16\" OLED",
+    "keyboard": "Backlit",
+    "os": "Windows 11",
+    "price": 2499,
+    "description": "OLED display and powerful GPU ideal for content creation.",
+    "weight": 1.9,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "title": "SpecCheck Student 13",
+    "model": "SC-S13",
+    "image": "",
+    "processor": "Intel Core i5-1235U",
+    "cpu_cores": 10,
+    "cpu_clock_speed": 4.4,
+    "battery_life": "12",
+    "ram": 8,
+    "storage": "256GB SSD",
+    "gpu": "Intel Iris Xe",
+    "gpu_score": 2800,
+    "screen_resolution": "1920x1200",
+    "refresh_rate": 60,
+    "display": "13.3\" IPS",
+    "keyboard": "Standard",
+    "os": "Windows 11",
+    "price": 699,
+    "description": "Light and affordable choice for students and everyday use.",
+    "weight": 1.2,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "title": "SpecCheck Dev 15",
+    "model": "SC-D15-LNX",
+    "image": "",
+    "processor": "AMD Ryzen 9 7940HS",
+    "cpu_cores": 8,
+    "cpu_clock_speed": 5.2,
+    "battery_life": "9",
+    "ram": 64,
+    "storage": "2TB SSD",
+    "gpu": "NVIDIA RTX 4060",
+    "gpu_score": 14000,
+    "screen_resolution": "2560x1440",
+    "refresh_rate": 165,
+    "display": "15.6\" IPS",
+    "keyboard": "Backlit",
+    "os": "Ubuntu 24.04",
+    "price": 2199,
+    "description": "Developer-focused laptop with high RAM and Linux out of the box.",
+    "weight": 2.0,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "title": "SpecCheck Air 13",
+    "model": "SC-A13",
+    "image": "",
+    "processor": "Intel Core Ultra 7",
+    "cpu_cores": 12,
+    "cpu_clock_speed": 4.7,
+    "battery_life": "15",
+    "ram": 16,
+    "storage": "512GB SSD",
+    "gpu": "Intel Arc iGPU",
+    "gpu_score": 5000,
+    "screen_resolution": "2560x1600",
+    "refresh_rate": 120,
+    "display": "13.6\" IPS",
+    "keyboard": "Backlit",
+    "os": "Windows 11",
+    "price": 1299,
+    "description": "Ultralight machine with excellent battery life and strong iGPU.",
+    "weight": 1.1,
+    "created_at": "2025-08-12T22:43:42.470Z"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "store",
+    "model": "product"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "token_blacklist",
+    "model": "blacklistedtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "token_blacklist",
+    "model": "outstandingtoken"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jdi683968rythrbdz198qw86t1786xqw",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pARGFpcuu8ZyACDVA0kpV0Z765NutDtf-_9l_C0rcVvnRc_J3ERZ3H63QLFB9cdpDvVW5Ox1XWZg9wVedAup5b4eT3cv4NCvXxrlfOQyfJgQyaHkdCAAtTGgSXUKqnsNPCIRkWLFmiMCTJjZMsBA4r3B-SjOAI:1ulxil:gdYlcEZtu4ylLweUASMA6XBPHn7-4_3OiJsh4K9w8jI",
+    "expire_date": "2025-08-26T22:43:55.223Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add product",
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "codename": "add_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change product",
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "codename": "change_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete product",
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "codename": "delete_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view product",
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "codename": "view_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add blacklisted token",
+    "content_type": [
+      "token_blacklist",
+      "blacklistedtoken"
+    ],
+    "codename": "add_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change blacklisted token",
+    "content_type": [
+      "token_blacklist",
+      "blacklistedtoken"
+    ],
+    "codename": "change_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete blacklisted token",
+    "content_type": [
+      "token_blacklist",
+      "blacklistedtoken"
+    ],
+    "codename": "delete_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view blacklisted token",
+    "content_type": [
+      "token_blacklist",
+      "blacklistedtoken"
+    ],
+    "codename": "view_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add outstanding token",
+    "content_type": [
+      "token_blacklist",
+      "outstandingtoken"
+    ],
+    "codename": "add_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change outstanding token",
+    "content_type": [
+      "token_blacklist",
+      "outstandingtoken"
+    ],
+    "codename": "change_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete outstanding token",
+    "content_type": [
+      "token_blacklist",
+      "outstandingtoken"
+    ],
+    "codename": "delete_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view outstanding token",
+    "content_type": [
+      "token_blacklist",
+      "outstandingtoken"
+    ],
+    "codename": "view_outstandingtoken"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$e42Rb4Vvc2xK9Oldr4gmfY$gqhuOaXHYitsiRmdKCPQN1oz8Bv1lHzTP2Dyb9Hf7KM=",
+    "last_login": "2025-08-12T22:43:55.215Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-08-12T22:43:35.462Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
