@@ -1,4 +1,5 @@
 <<<<<<< Current (Your changes)
+<<<<<<< Current (Your changes)
 # Netlify config has moved to the project root. This file is intentionally empty.
 =======[build]
   base = "Frontend"
@@ -12,5 +13,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+# Netlify config has moved to the project root. This file is intentionally empty.
+>>>>>>> Incoming (Background Agent changes)
+=======
 # Netlify config has moved to the project root. This file is intentionally empty.
 >>>>>>> Incoming (Background Agent changes)
