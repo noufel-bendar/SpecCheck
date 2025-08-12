@@ -52,16 +52,13 @@ import logo from "../assets/images/icon12.png";
 
         localStorage.setItem('token', res.data.token);
 
-        if (res.data.user) {
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              first_name: res.data.user.first_name,
-              last_name: res.data.user.last_name,
-              email: res.data.user.email,
-            })
-          );
-        }
+        const userPayload = {
+          first_name: res.data.first_name,
+          last_name: res.data.last_name,
+          email: res.data.email,
+          username: res.data.username,
+        };
+        localStorage.setItem('user', JSON.stringify(userPayload));
 
         navigate('/home');
       } else {
@@ -152,6 +149,17 @@ import logo from "../assets/images/icon12.png";
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1 text-white">Confirm Password</label>
+                  <input
+                    type="password"
+                    placeholder="Confirm your password"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
               </>
             )}
 
@@ -166,49 +174,26 @@ import logo from "../assets/images/icon12.png";
               />
             </div>
 
-            {!login && (
-              <div>
-                <label className="block text-sm font-medium mb-1 text-white">Confirm Password</label>
-                <input
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-            )}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-
-            <div className="mt-8">
-              <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition tracking-widest">
-                {login ? 'Login' : 'Sign Up'}
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold"
+            >
+              {login ? 'Login' : 'Sign Up'}
+            </button>
           </form>
 
-          <p className="mt-4 text-center text-sm text-gray-300">
-            {login ? (
-              <>
-                Don’t have an account?{' '}
-                <button onClick={handleToggle} className="text-blue-300 hover:underline">
-                  Sign up
-                </button>
-              </>
-            ) : (
-              <>
-                Already have an account?{' '}
-                <button onClick={handleToggle} className="text-blue-300 hover:underline">
-                  Login
-                </button>
-              </>
-            )}
+          <p className="text-center text-sm text-white mt-4">
+            {login ? "Don't have an account?" : 'Already have an account?'}
+            <button onClick={handleToggle} className="text-blue-300 hover:underline ml-1">
+              {login ? 'Sign Up' : 'Login'}
+            </button>
           </p>
         </div>
       </div>
     </>
   );
-};
+}
 
 export default Login;

@@ -10,15 +10,29 @@ function ProductGrid({ searchTerm = "" }) {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loadError, setLoadError] = useState("");
 
   const token = localStorage.getItem("token");
   const isLoggedIn = !!token;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/products/`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Failed to fetch products", err));
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLoadError("");
+      })
+      .catch((err) => {
+        console.error("Failed to fetch products", err);
+        setLoadError("Failed to load products. Please try again later.");
+        setProducts([]);
+      });
   }, []);
 
   const handleCategoryChange = (category) => {
@@ -60,6 +74,10 @@ function ProductGrid({ searchTerm = "" }) {
       <h1  id="shop-section"  className="text-3xl font-bold text-center mb-12 text-white" data-aos="fade-down">
         Explore Our Laptops
       </h1>
+
+      {loadError && (
+        <p className="text-red-400 text-center mb-6">{loadError}</p>
+      )}
 
       {!isLoggedIn && (
         <p className="text-white text-center mb-6">
