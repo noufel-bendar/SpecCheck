@@ -6,7 +6,6 @@ import { API_BASE } from "../utils/config";
 const ITEMS_PER_PAGE = 15;
 
 function ProductGrid({ searchTerm = "" }) {
-  
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,15 +24,7 @@ function ProductGrid({ searchTerm = "" }) {
         return res.json();
       })
       .then((data) => {
-<<<<<<< Current (Your changes)
-<<<<<<< Current (Your changes)
-        setProducts(data);
-=======
         setProducts(Array.isArray(data) ? data : []);
->>>>>>> Incoming (Background Agent changes)
-=======
-        setProducts(Array.isArray(data) ? data : []);
->>>>>>> Incoming (Background Agent changes)
         setLoadError("");
       })
       .catch((err) => {
@@ -73,15 +64,17 @@ function ProductGrid({ searchTerm = "" }) {
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
-    const filteredBySearch = filteredProducts.filter((product) =>
+
+  const filteredBySearch = filteredProducts.filter((product) =>
     (product.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
     (product.model || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
- const displayedProducts = filteredBySearch.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+  const displayedProducts = filteredBySearch.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
   return (
     <section className="px-4 sm:px-8 py-16 bg-[#000080]">
-      <h1  id="shop-section"  className="text-3xl font-bold text-center mb-12 text-white" data-aos="fade-down">
+      <h1 id="shop-section" className="text-3xl font-bold text-center mb-12 text-white" data-aos="fade-down">
         Explore Our Laptops
       </h1>
 
