@@ -86,6 +86,8 @@ function ProductDetails() {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
+  const productImgSrc = product.image && product.image.startsWith('http') ? product.image : `${API_BASE}${product.image || ''}`;
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -97,7 +99,7 @@ function ProductDetails() {
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
             {product.image ? (
               <img
-                src={`${API_BASE}${product.image}`}
+                src={productImgSrc}
                 alt={product.title}
                 className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4"
               />

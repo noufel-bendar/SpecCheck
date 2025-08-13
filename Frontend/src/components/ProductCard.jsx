@@ -3,13 +3,14 @@ import { API_BASE } from "../utils/config";
 
 
 function ProductCard({ id,title, model, image, price, description }) {
+  const imgSrc = image && image.startsWith('http') ? image : `${API_BASE}${image || ''}`;
   return (
     <div
       className="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full"
       data-aos="fade-up"
     >
       <img
-  src={`${API_BASE}${image}`}
+  src={imgSrc}
   alt={title}
   className="w-full h-48 object-contain bg-gray-100"
 />
