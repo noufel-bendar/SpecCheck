@@ -5,6 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "../components/Header";
 import { normalizeImageUrl, getImageErrorHandler } from "../utils/imageUtils";
+import { API_BASE } from "../utils/config";
 
 const getImageSrc = (imagePath) => {
   return normalizeImageUrl(imagePath, 'https://placehold.co/800x480?text=No+Image');
