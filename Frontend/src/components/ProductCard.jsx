@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
-import { API_BASE } from "../utils/config";
+import { normalizeImageUrl, getImageErrorHandler } from "../utils/imageUtils";
 
 function ProductCard({ id, title, model, image, price, description }) {
-  const placeholder = 'https://placehold.co/400x300?text=No+Image';
-  const resolved = typeof image === 'string' ? image : '';
-  const normalized = resolved.replace(/^(https?)(\/\/)/i, '$1:$2');
-  const imgSrc = normalized && normalized.trim() !== '' 
-    ? (normalized.startsWith('http')
-        ? normalized
-        : `${API_BASE}${normalized.startsWith('/') ? '' : '/'}${normalized}`)
-    : placeholder;
+  const imgSrc = normalizeImageUrl(image);
 
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full" data-aos="fade-up">
-      <img src={imgSrc} alt={title} className="w-full h-48 object-contain bg-gray-100" />
+      <img 
+        src={imgSrc} 
+        alt={title} 
+        className="w-full h-48 object-contain bg-gray-100"
+        onError={getImageErrorHandler()}
+      />
       <div className="p-4 flex flex-col flex-grow">
         <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
         <h3 className="text-md text-royal font-medium mb-2">{model}</h3>

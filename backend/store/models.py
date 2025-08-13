@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 from django.db import models
@@ -6,7 +7,7 @@ from django.db import models
 class Product(models.Model):
     title = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='products/',blank=True, null=True)
+    image = CloudinaryField('image', folder='products', blank=True, null=True)
     processor = models.CharField(max_length=100)
     cpu_cores = models.IntegerField()
     cpu_clock_speed = models.FloatField()

@@ -4,16 +4,10 @@ import Rating from "../utils/Rating";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "../components/Header";
-import { API_BASE } from "../utils/config";
+import { normalizeImageUrl, getImageErrorHandler } from "../utils/imageUtils";
 
 const getImageSrc = (imagePath) => {
-  const placeholder = 'https://placehold.co/800x480?text=No+Image';
-  if (!imagePath || imagePath.trim() === '') return placeholder;
-  let normalized = imagePath.replace(/^https?:\/\//i, match => match.toLowerCase() === 'https//' ? 'https://' : match);
-  if (!/^https?:\/\//i.test(normalized)) {
-    normalized = `${API_BASE.replace(/\/$/, '')}/${normalized.replace(/^\/+/, '')}`;
-  }
-  return normalized;
+  return normalizeImageUrl(imagePath, 'https://placehold.co/800x480?text=No+Image');
 };
 
 function ProductDetails() {
@@ -92,7 +86,12 @@ function ProductDetails() {
         <h1 className="text-5xl font-bold text-gray-100 mb-6 tracking-tight" data-aos="fade-down">Laptop Details</h1>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
-            <img src={productImgSrc} alt={product.title} className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4" />
+            <img 
+              src={productImgSrc} 
+              alt={product.title} 
+              className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4"
+              onError={getImageErrorHandler('https://placehold.co/800x480?text=No+Image')}
+            />
             <h2 className="text-xl font-bold text-gray-800">{product.title}</h2>
             <h3 className="text-md text-blue-700 mb-4">{product.model}</h3>
             <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
@@ -140,7 +139,12 @@ function ProductDetails() {
               const compImgSrc = getImageSrc(comp.image);
               return (
                 <div key={comp.id} className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300" data-aos="fade-up" data-aos-delay={idx * 100}>
-                  <img src={compImgSrc} alt={comp.model} className="w-full h-32 object-contain bg-gray-50 rounded-lg" />
+                  <img 
+                    src={compImgSrc} 
+                    alt={comp.model} 
+                    className="w-full h-32 object-contain bg-gray-50 rounded-lg"
+                    onError={getImageErrorHandler()}
+                  />
                   <p className="mt-2 text-sm font-medium text-gray-800">{comp.title} {comp.model}</p>
                   <ul className="text-xs text-gray-600 mt-2 space-y-1">
                     <li>CPU: {comp.processor}</li>
