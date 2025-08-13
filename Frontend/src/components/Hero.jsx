@@ -41,13 +41,15 @@ function Hero() {
   }, []);
 
   const topProducts = Array.isArray(products) ? products.slice(0, 3) : [];
+  const placeholder = 'https://placehold.co/600x450?text=No+Image';
 
   return (
     <div className='pt-20 sm:pt-24 px-4 sm:px-8'>
       <div className='bg-opacity-90 p-4 sm:p-6 rounded-lg shadow-lg mb-6 min-h-[250px] sm:min-h-[320px] lg:min-h-[280px] bg-gradient-to-r from-indigo-200 to-blue-200'>
         <Slider {...settings}>
           {topProducts.map((item) => {
-            const imgSrc = item.image && item.image.startsWith('http') ? item.image : `${API_BASE}${item.image || ''}`;
+            const resolved = typeof item.image === 'string' ? item.image : '';
+            const imgSrc = resolved ? (resolved.startsWith('http') ? resolved : `${API_BASE}${resolved}`) : placeholder;
             return (
             <div key={item.id} className='flex flex-col items-center justify-center text-center gap-4 sm:pl-3 pt-12 sm:pt-0 sm:text-left order-2 sm:order-1'>
               <div className='grid grid-cols-1 sm:grid-cols-2 items-center gap-8'>

@@ -86,7 +86,9 @@ function ProductDetails() {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  const productImgSrc = product.image && product.image.startsWith('http') ? product.image : `${API_BASE}${product.image || ''}`;
+  const placeholder = 'https://placehold.co/800x480?text=No+Image';
+  const resolved = typeof product.image === 'string' ? product.image : '';
+  const productImgSrc = resolved ? (resolved.startsWith('http') ? resolved : `${API_BASE}${resolved}`) : placeholder;
 
   return (
     <div className="min-h-screen">
@@ -135,7 +137,7 @@ function ProductDetails() {
 
                 return (
                   <div key={category} className="mb-2" data-aos="fade-up" data-aos-delay={index * 60}>
-                    <div className="flex justify-between text-xs font-medium text_GRAY-600">
+                    <div className="flex justify-between text-xs font-medium text-gray-600">
                       <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
                       <span>{score} / 10</span>
                     </div>
