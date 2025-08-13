@@ -44,8 +44,11 @@ def sanitize_product_images(apps, schema_editor):
             path = path[6:]
         path = path.lstrip('/')
 
-        # At this point we expect a relative path under products/...
-        clean = path
+        # Ensure we store under products/<filename>
+        filename = path.split('/')[-1] if path else ''
+        if not filename:
+            continue
+        clean = f"products/{filename}"
 
         # Only update if changed
         if clean != original:
