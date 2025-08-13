@@ -7,6 +7,10 @@ def sanitize_product_images(apps, schema_editor):
 
     Product = apps.get_model('store', 'Product')
 
+    # Only run if there are products to sanitize
+    if not Product.objects.exists():
+        return
+
     for product in Product.objects.all():
         raw = getattr(product, 'image', None)
         image_name = ''
