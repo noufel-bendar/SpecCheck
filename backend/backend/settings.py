@@ -130,3 +130,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://specheckffii.vercel.app",
     "https://speccheck-5.onrender.com",
 ]
+
+# Optional: used when serializers need to build absolute URLs without a request
+PUBLIC_BASE_URL = os.environ.get('PUBLIC_BASE_URL', 'https://speccheck-5.onrender.com')

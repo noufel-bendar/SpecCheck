@@ -25,11 +25,12 @@ export function fileUrl(pathOrUrl) {
   if (/^https?:\/\//i.test(s)) return s;
   // if a protocol-relative URL like //host/path
   if (s.startsWith('//')) return new URL(s, `${API_BASE}/`).toString();
-  // if the string accidentally embeds a full URL later, extract it
-  const httpsIdx = s.indexOf('https://');
-  if (httpsIdx > 0) return s.slice(httpsIdx);
-  const httpIdx = s.indexOf('http://');
-  if (httpIdx > 0) return s.slice(httpIdx);
+  // if the string accidentally embeds a full URL later, extract it (and fix missing colon)
+  const m = s.match(/https?:\/\/\S+/i) || s.match(/https?\/\/\S+/i);
+  if (m && m[0]) {
+    const fixed = m[0].replace(/^(https?)(\/\/)/i, '$1:$2');
+    return fixed;
+  }
   // treat as relative to API_BASE
   const rel = s.startsWith('/') ? s : `/${s}`;
   return `${API_BASE}${rel}`;
