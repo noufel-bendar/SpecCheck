@@ -5,10 +5,11 @@ import { API_BASE } from "../utils/config";
 function ProductCard({ id,title, model, image, price, description }) {
   const placeholder = 'https://placehold.co/400x300?text=No+Image';
   const resolved = typeof image === 'string' ? image : '';
-  const imgSrc = resolved
-    ? (resolved.startsWith('http')
-        ? resolved
-        : `${API_BASE}${resolved.startsWith('/') ? '' : '/'}${resolved}`)
+  const normalized = resolved.replace(/^(https?)(\/\/)/i, '$1:$2');
+  const imgSrc = normalized
+    ? (normalized.startsWith('http')
+        ? normalized
+        : `${API_BASE}${normalized.startsWith('/') ? '' : '/'}${normalized}`)
     : placeholder;
   return (
     <div

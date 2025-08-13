@@ -88,8 +88,9 @@ function ProductDetails() {
 
   const placeholder = 'https://placehold.co/800x480?text=No+Image';
   const resolved = typeof product.image === 'string' ? product.image : '';
-  const productImgSrc = resolved
-    ? (resolved.startsWith('http') ? resolved : `${API_BASE}${resolved.startsWith('/') ? '' : '/'}${resolved}`)
+  const normalized = resolved.replace(/^(https?)(\/\/)/i, '$1:$2');
+  const productImgSrc = normalized
+    ? (normalized.startsWith('http') ? normalized : `${API_BASE}${normalized.startsWith('/') ? '' : '/'}${normalized}`)
     : placeholder;
 
   return (
@@ -171,8 +172,9 @@ function ProductDetails() {
             <h4 className="text-xl font-semibold text-gray-200 tracking-wide">Closest Competitors</h4>
             {competitors.map(({ product: comp }, idx) => {
               const compResolved = typeof comp.image === 'string' ? comp.image : '';
-              const compImgSrc = compResolved
-                ? (compResolved.startsWith('http') ? compResolved : `${API_BASE}${compResolved.startsWith('/') ? '' : '/'}${compResolved}`)
+              const compNormalized = compResolved.replace(/^(https?)(\/\/)/i, '$1:$2');
+              const compImgSrc = compNormalized
+                ? (compNormalized.startsWith('http') ? compNormalized : `${API_BASE}${compNormalized.startsWith('/') ? '' : '/'}${compNormalized}`)
                 : placeholder;
               return (
                 <div
