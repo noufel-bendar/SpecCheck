@@ -8,7 +8,7 @@ from .serializers import ProductSerializer
 class ProductListAPIView(APIView):
     def get(self, request):
         try:
-            products = Product.objects.all()
+            products = Product.objects.all().prefetch_related('images')
             serializer = ProductSerializer(products, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as exc:
@@ -17,7 +17,7 @@ class ProductListAPIView(APIView):
 from rest_framework.generics import RetrieveAPIView
 
 class ProductDetailAPIView(RetrieveAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().prefetch_related('images')
     serializer_class = ProductSerializer
 
     def get_serializer_context(self):

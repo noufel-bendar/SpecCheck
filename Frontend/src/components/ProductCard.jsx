@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { API_BASE } from "../utils/config";
 
-function ProductCard({ id, title, model, image, price, description }) {
+function ProductCard({ id, title, model, image, images = [], price, description }) {
   const placeholder = 'https://placehold.co/400x300?text=No+Image';
   const getImageSrc = (img) => {
     if (!img) return placeholder;
@@ -13,7 +13,8 @@ function ProductCard({ id, title, model, image, price, description }) {
     return src || placeholder;
   };
 
-  const imgSrc = getImageSrc(image);
+  const primary = Array.isArray(images) ? images.find(g => g.is_primary && g.url) || images.find(g => g.url) : null;
+  const imgSrc = getImageSrc(primary?.url || image);
 
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full" data-aos="fade-up">

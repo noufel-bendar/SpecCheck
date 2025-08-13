@@ -83,8 +83,10 @@ function ProductDetails() {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  const productImgSrc = getImageSrc(product.image);
-
+    const gallery = Array.isArray(product.images) ? product.images : [];
+  const primary = gallery.find(g => g.is_primary && g.url) || gallery.find(g => g.url);
+  const productImgSrc = getImageSrc(primary?.url || product.image);
+  
   return (
     <div className="min-h-screen">
       <Header />
@@ -92,10 +94,17 @@ function ProductDetails() {
         <h1 className="text-5xl font-bold text-gray-100 mb-6 tracking-tight" data-aos="fade-down">Laptop Details</h1>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
-            {product.image ? (
+            {productImgSrc ? (
               <img src={productImgSrc} alt={product.title} className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4" />
             ) : (
               <div className="w-full h-64 bg-gray-200 rounded-xl mb-4 flex items-center justify-center text-gray-500">No image available</div>
+            )}
+            {gallery.length > 1 && (
+              <div className="grid grid-cols-4 gap-2 mb-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={getImageSrc(img.url)} alt={img.alt_text || product.title} className="w-full h-20 object-contain bg-gray-50 rounded border" />
+                ))}
+              </div>
             )}
             <h2 className="text-xl font-bold text-gray-800">{product.title}</h2>
             <h3 className="text-md text-blue-700 mb-4">{product.model}</h3>
@@ -141,7 +150,9 @@ function ProductDetails() {
           <div className="lg:w-1/3 hidden lg:block space-y-5" data-aos="fade-left">
             <h4 className="text-xl font-semibold text-gray-200 tracking-wide">Closest Competitors</h4>
             {competitors.map(({ product: comp }, idx) => {
-              const compImgSrc = getImageSrc(comp.image);
+              const compGallery = Array.isArray(comp.images) ? comp.images : [];
+              const compPrimary = compGallery.find(g => g.is_primary && g.url) || compGallery.find(g => g.url);
+              const compImgSrc = getImageSrc(compPrimary?.url || comp.image);
               return (
                 <div key={comp.id} className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300" data-aos="fade-up" data-aos-delay={idx * 100}>
                   <img src={compImgSrc} alt={comp.model} className="w-full h-32 object-contain bg-gray-50 rounded-lg" />
