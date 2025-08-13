@@ -3,9 +3,10 @@ services:
     name: my-django-backend
     env: python
     buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-    startCommand: python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT
+      python3 -m pip install --upgrade pip
+      pip3 install -r requirements.txt
+      python3 manage.py collectstatic --noinput
+    startCommand: python3 manage.py migrate && python3 manage.py loaddata data.json && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: DEBUG
         value: "False"
