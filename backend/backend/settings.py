@@ -130,6 +130,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Helpful when building absolute URLs and handling CSRF in production
 CSRF_TRUSTED_ORIGINS = [
     "https://specheckffii.vercel.app",
+    "https://spec-check-six.vercel.app",
     "https://speccheck-5.onrender.com",
 ]
 
