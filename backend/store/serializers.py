@@ -18,7 +18,12 @@ class ProductSerializer(serializers.ModelSerializer):
 
         # Always return an absolute URL when a request is available
         request = self.context.get('request')
-        media_path = f"{settings.MEDIA_URL}{obj.image.name}"
+        image_name = getattr(getattr(obj, 'image', None), 'name', '')
+        if not image_name:
+            return ''
+        # Ensure leading slash and /media prefix
+        relative_path = image_name.lstrip('/')
+        media_path = f"{settings.MEDIA_URL}{relative_path}"
 
         if request is not None:
             return request.build_absolute_uri(media_path)
