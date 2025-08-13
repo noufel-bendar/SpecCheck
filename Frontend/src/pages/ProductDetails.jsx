@@ -8,7 +8,7 @@ import { API_BASE } from "../utils/config";
 
 const getImageSrc = (imagePath) => {
   const placeholder = 'https://placehold.co/800x480?text=No+Image';
-  if (!imagePath) return placeholder;
+  if (!imagePath || imagePath.trim() === '') return placeholder;
   let normalized = imagePath.replace(/^https?:\/\//i, match => match.toLowerCase() === 'https//' ? 'https://' : match);
   if (!/^https?:\/\//i.test(normalized)) {
     normalized = `${API_BASE.replace(/\/$/, '')}/${normalized.replace(/^\/+/, '')}`;
@@ -92,11 +92,7 @@ function ProductDetails() {
         <h1 className="text-5xl font-bold text-gray-100 mb-6 tracking-tight" data-aos="fade-down">Laptop Details</h1>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
-            {product.image ? (
-              <img src={productImgSrc} alt={product.title} className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4" />
-            ) : (
-              <div className="w-full h-64 bg-gray-200 rounded-xl mb-4 flex items-center justify-center text-gray-500">No image available</div>
-            )}
+            <img src={productImgSrc} alt={product.title} className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4" />
             <h2 className="text-xl font-bold text-gray-800">{product.title}</h2>
             <h3 className="text-md text-blue-700 mb-4">{product.model}</h3>
             <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>

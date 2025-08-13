@@ -3,17 +3,13 @@ import { API_BASE } from "../utils/config";
 
 function ProductCard({ id, title, model, image, price, description }) {
   const placeholder = 'https://placehold.co/400x300?text=No+Image';
-  const getImageSrc = (img) => {
-    if (!img) return placeholder;
-    let src = typeof img === 'string' ? img : '';
-    src = src.replace(/^(https?)(\/\/)/i, '$1:$2');
-    if (!/^https?:\/\//i.test(src)) {
-      src = `${API_BASE.replace(/\/$/, '')}/${src.replace(/^\/+/, '')}`;
-    }
-    return src || placeholder;
-  };
-
-  const imgSrc = getImageSrc(image);
+  const resolved = typeof image === 'string' ? image : '';
+  const normalized = resolved.replace(/^(https?)(\/\/)/i, '$1:$2');
+  const imgSrc = normalized && normalized.trim() !== '' 
+    ? (normalized.startsWith('http')
+        ? normalized
+        : `${API_BASE}${normalized.startsWith('/') ? '' : '/'}${normalized}`)
+    : placeholder;
 
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full" data-aos="fade-up">
