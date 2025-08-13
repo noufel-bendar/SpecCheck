@@ -97,7 +97,7 @@ function ProductDetails() {
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
             {product.image ? (
               <img
-                src={product.image}
+                src={`${API_BASE}${product.image}`}
                 alt={product.title}
                 className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4"
               />
