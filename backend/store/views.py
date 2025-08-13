@@ -9,7 +9,7 @@ class ProductListAPIView(APIView):
     def get(self, request):
         try:
             products = Product.objects.all()
-            serializer = ProductSerializer(products, many=True)
+            serializer = ProductSerializer(products, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as exc:
             return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -19,3 +19,8 @@ from rest_framework.generics import RetrieveAPIView
 class ProductDetailAPIView(RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({'request': self.request})
+        return context
