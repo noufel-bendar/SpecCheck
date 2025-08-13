@@ -83,7 +83,7 @@
   "fields": {
     "title": "SpecCheck Student 13",
     "model": "SC-S13",
-    "image": "products/laptop.png",
+    "image": "products/spec_no_bg.png",
     "processor": "Intel Core i5-1235U",
     "cpu_cores": 10,
     "cpu_clock_speed": 4.4,
@@ -109,7 +109,7 @@
   "fields": {
     "title": "SpecCheck Dev 15",
     "model": "SC-D15-LNX",
-    "image": "products/pngimg.com_-_laptop_PNG101804.png",
+    "image": "products/spec_no_bg.png",
     "processor": "AMD Ryzen 9 7940HS",
     "cpu_cores": 8,
     "cpu_clock_speed": 5.2,
@@ -135,7 +135,7 @@
   "fields": {
     "title": "SpecCheck Air 13",
     "model": "SC-A13",
-    "image": "products/lapp.png",
+    "image": "products/spec_no_bg.png",
     "processor": "Intel Core Ultra 7",
     "cpu_cores": 12,
     "cpu_clock_speed": 4.7,
@@ -161,7 +161,7 @@
     "fields": {
       "title": "SpecCheck Ultra 17",
       "model": "SC-U17-PRO",
-      "image": "products/huaweiMate.png",
+      "image": "products/MacBookPro.png",
       "processor": "Intel Core i9-14900H",
       "cpu_cores": 16,
       "cpu_clock_speed": 5.6,
