@@ -167,37 +167,43 @@ function ProductDetails() {
           {/* Competitor Sidebar */}
           <div className="lg:w-1/3 hidden lg:block space-y-5" data-aos="fade-left">
             <h4 className="text-xl font-semibold text-gray-200 tracking-wide">Closest Competitors</h4>
-            {competitors.map(({ product: comp }, idx) => (
-              <div
-                key={comp.id}
-                className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300"
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
-                <img
-                  src={`${API_BASE}${comp.image}` }
-                  alt={comp.model}
-                  className="w-full h-32 object-contain bg-gray-50 rounded-lg"
-                />
-                <p className="mt-2 text-sm font-medium text-gray-800">
-                  {comp.title} {comp.model}
-                </p>
-                <ul className="text-xs text-gray-600 mt-2 space-y-1">
-                  <li>CPU: {comp.processor}</li>
-                  <li>RAM: {comp.ram} GB</li>
-                  <li>GPU: {comp.gpu}</li>
-                  <li>Battery: {comp.battery_life} hrs</li>
-                  <li>Weight: {comp.weight}</li>
-                </ul>
-                <p className="text-sm text-royal font-bold mt-2">{comp.price} DA</p>
-                <Link
-                  to={`/product/${comp.id}`}
-                  className="block mt-3 text-center text-xs text-blue-600 hover:underline"
+            {competitors.map(({ product: comp }, idx) => {
+              const compResolved = typeof comp.image === 'string' ? comp.image : '';
+              const compImgSrc = compResolved
+                ? (compResolved.startsWith('http') ? compResolved : `${API_BASE}${compResolved}`)
+                : placeholder;
+              return (
+                <div
+                  key={comp.id}
+                  className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 100}
                 >
-                  View Details →
-                </Link>
-              </div>
-            ))}
+                  <img
+                    src={compImgSrc}
+                    alt={comp.model}
+                    className="w-full h-32 object-contain bg-gray-50 rounded-lg"
+                  />
+                  <p className="mt-2 text-sm font-medium text-gray-800">
+                    {comp.title} {comp.model}
+                  </p>
+                  <ul className="text-xs text-gray-600 mt-2 space-y-1">
+                    <li>CPU: {comp.processor}</li>
+                    <li>RAM: {comp.ram} GB</li>
+                    <li>GPU: {comp.gpu}</li>
+                    <li>Battery: {comp.battery_life} hrs</li>
+                    <li>Weight: {comp.weight}</li>
+                  </ul>
+                  <p className="text-sm text-royal font-bold mt-2">{comp.price} DA</p>
+                  <Link
+                    to={`/product/${comp.id}`}
+                    className="block mt-3 text-center text-xs text-blue-600 hover:underline"
+                  >
+                    View Details →
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
