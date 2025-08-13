@@ -27,3 +27,18 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.model}"
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    alt_text = models.CharField(max_length=255, blank=True, default='')
+    is_primary = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-is_primary', 'id']
+
+    def __str__(self):
+        product_part = f"{self.product.title} - {self.product.model}" if self.product_id else 'Orphaned ProductImage'
+        return f"Image for {product_part} ({'primary' if self.is_primary else 'secondary'})"
