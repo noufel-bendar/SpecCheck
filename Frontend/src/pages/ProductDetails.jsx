@@ -86,7 +86,9 @@ function ProductDetails() {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  const productImgSrc = product.image && product.image.startsWith('http') ? product.image : `${API_BASE}${product.image || ''}`;
+  const placeholder = 'https://placehold.co/800x480?text=No+Image';
+  const resolved = typeof product.image === 'string' ? product.image : '';
+  const productImgSrc = resolved ? (resolved.startsWith('http') ? resolved : `${API_BASE}${resolved}`) : placeholder;
 
   return (
     <div className="min-h-screen">
