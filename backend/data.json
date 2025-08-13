@@ -83,7 +83,7 @@
   "fields": {
     "title": "SpecCheck Student 13",
     "model": "SC-S13",
-    "image": "products/spec_no_bg.png",
+    "image": "products/dell.png",
     "processor": "Intel Core i5-1235U",
     "cpu_cores": 10,
     "cpu_clock_speed": 4.4,
