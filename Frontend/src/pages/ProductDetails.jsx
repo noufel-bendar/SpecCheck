@@ -6,6 +6,16 @@ import "aos/dist/aos.css";
 import Header from "../components/Header";
 import { API_BASE } from "../utils/config";
 
+const getImageSrc = (imagePath) => {
+  const placeholder = 'https://placehold.co/800x480?text=No+Image';
+  if (!imagePath) return placeholder;
+  let normalized = imagePath.replace(/^https?:\/\//i, match => match.toLowerCase() === 'https//' ? 'https://' : match);
+  if (!/^https?:\/\//i.test(normalized)) {
+    normalized = `${API_BASE.replace(/\/$/, '')}/${normalized.replace(/^\/+/, '')}`;
+  }
+  return normalized;
+};
+
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -14,8 +24,6 @@ function ProductDetails() {
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
-
-    // Fetch single product
     fetch(`${API_BASE}/api/products/${id}/`)
       .then(async (res) => {
         if (!res.ok) {
@@ -25,12 +33,7 @@ function ProductDetails() {
         return res.json();
       })
       .then((data) => setProduct(data))
-      .catch((err) => {
-        console.error("Failed to fetch product", err);
-        setError("Failed to load product.");
-      });
-
-    // Fetch all products
+      .catch(() => setError("Failed to load product."));
     fetch(`${API_BASE}/api/products/`)
       .then(async (res) => {
         if (!res.ok) {
@@ -40,10 +43,7 @@ function ProductDetails() {
         return res.json();
       })
       .then((data) => setAllProducts(data))
-      .catch((err) => {
-        console.error("Failed to fetch products", err);
-        setAllProducts([]);
-      });
+      .catch(() => setAllProducts([]));
   }, [id]);
 
   if (!product) {
@@ -74,50 +74,32 @@ function ProductDetails() {
         parseFloat(other.battery_life) || 0,
         parseFloat(other.weight) || 0
       );
-
       let similarity = 0;
       Object.keys(rating.categories).forEach((key) => {
-        const diff = Math.abs(rating.categories[key] - otherRating.categories[key]);
-        similarity += (10 - diff);
+        similarity += (10 - Math.abs(rating.categories[key] - otherRating.categories[key]));
       });
-
       return { product: other, score: similarity };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  const placeholder = 'https://placehold.co/800x480?text=No+Image';
-  const resolved = typeof product.image === 'string' ? product.image : '';
-  const normalized = resolved.replace(/^(https?)(\/\/)/i, '$1:$2');
-  const productImgSrc = normalized
-    ? (normalized.startsWith('http') ? normalized : `${API_BASE}${normalized.startsWith('/') ? '' : '/'}${normalized}`)
-    : placeholder;
+  const productImgSrc = getImageSrc(product.image);
 
   return (
     <div className="min-h-screen">
       <Header />
       <div className="w-full max-w-7xl mx-auto py-10 px-4 md:px-8 xl:px-16 mt-[80px]">
-        <h1 className="text-5xl font-bold text-gray-100 mb-6 tracking-tight" data-aos="fade-down">
-          Laptop Details
-        </h1>
+        <h1 className="text-5xl font-bold text-gray-100 mb-6 tracking-tight" data-aos="fade-down">Laptop Details</h1>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
             {product.image ? (
-              <img
-                src={productImgSrc}
-                alt={product.title}
-                className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4"
-              />
+              <img src={productImgSrc} alt={product.title} className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4" />
             ) : (
-              <div className="w-full h-64 bg-gray-200 rounded-xl mb-4 flex items-center justify-center text-gray-500">
-                No image available
-              </div>
+              <div className="w-full h-64 bg-gray-200 rounded-xl mb-4 flex items-center justify-center text-gray-500">No image available</div>
             )}
-
             <h2 className="text-xl font-bold text-gray-800">{product.title}</h2>
             <h3 className="text-md text-blue-700 mb-4">{product.model}</h3>
             <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
-
             <ul className="text-sm text-gray-600 space-y-1">
               <li><strong>Processor:</strong> {product.processor}</li>
               <li><strong>RAM:</strong> {product.ram} GB</li>
@@ -129,15 +111,10 @@ function ProductDetails() {
               <li><strong>Battery Life:</strong> {product.battery_life} hrs</li>
               <li><strong>Weight:</strong> {product.weight}</li>
             </ul>
-
             <div className="mt-6 bg-gray-100 p-4 rounded-lg shadow-inner">
               <h4 className="text-sm font-semibold text-gray-800 mb-3">Category Ratings</h4>
               {Object.entries(rating.categories).map(([category, score], index) => {
-                let barColor = "bg-red-500";
-                if (score >= 8.5) barColor = "bg-emerald-500";
-                else if (score >= 7) barColor = "bg-yellow-500";
-                else if (score >= 5) barColor = "bg-orange-400";
-
+                let barColor = score >= 8.5 ? "bg-emerald-500" : score >= 7 ? "bg-yellow-500" : score >= 5 ? "bg-orange-400" : "bg-red-500";
                 return (
                   <div key={category} className="mb-2" data-aos="fade-up" data-aos-delay={index * 60}>
                     <div className="flex justify-between text-xs font-medium text-gray-600">
@@ -145,16 +122,12 @@ function ProductDetails() {
                       <span>{score} / 10</span>
                     </div>
                     <div className="w-full bg-gray-300 h-2 rounded-full overflow-hidden">
-                      <div
-                        className={`${barColor} h-full transition-all duration-1000 ease-out`}
-                        style={{ width: `${score * 10}%` }}
-                      />
+                      <div className={`${barColor} h-full transition-all duration-1000 ease-out`} style={{ width: `${score * 10}%` }} />
                     </div>
                   </div>
                 );
               })}
             </div>
-
             <div className="mt-5">
               <p className="font-medium text-sm text-gray-600 mb-1">Component Breakdown</p>
               <ul className="list-disc ml-5 mt-1 text-gray-600 text-sm space-y-1">
@@ -163,34 +136,16 @@ function ProductDetails() {
                 ))}
               </ul>
             </div>
-
             <div className="text-xl font-bold text-royal mt-6">{product.price} DA</div>
           </div>
-
-          {/* Competitor Sidebar */}
           <div className="lg:w-1/3 hidden lg:block space-y-5" data-aos="fade-left">
             <h4 className="text-xl font-semibold text-gray-200 tracking-wide">Closest Competitors</h4>
             {competitors.map(({ product: comp }, idx) => {
-              const compResolved = typeof comp.image === 'string' ? comp.image : '';
-              const compNormalized = compResolved.replace(/^(https?)(\/\/)/i, '$1:$2');
-              const compImgSrc = compNormalized
-                ? (compNormalized.startsWith('http') ? compNormalized : `${API_BASE}${compNormalized.startsWith('/') ? '' : '/'}${compNormalized}`)
-                : placeholder;
+              const compImgSrc = getImageSrc(comp.image);
               return (
-                <div
-                  key={comp.id}
-                  className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300"
-                  data-aos="fade-up"
-                  data-aos-delay={idx * 100}
-                >
-                  <img
-                    src={compImgSrc}
-                    alt={comp.model}
-                    className="w-full h-32 object-contain bg-gray-50 rounded-lg"
-                  />
-                  <p className="mt-2 text-sm font-medium text-gray-800">
-                    {comp.title} {comp.model}
-                  </p>
+                <div key={comp.id} className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl hover:-translate-y-1 duration-300" data-aos="fade-up" data-aos-delay={idx * 100}>
+                  <img src={compImgSrc} alt={comp.model} className="w-full h-32 object-contain bg-gray-50 rounded-lg" />
+                  <p className="mt-2 text-sm font-medium text-gray-800">{comp.title} {comp.model}</p>
                   <ul className="text-xs text-gray-600 mt-2 space-y-1">
                     <li>CPU: {comp.processor}</li>
                     <li>RAM: {comp.ram} GB</li>
@@ -199,12 +154,7 @@ function ProductDetails() {
                     <li>Weight: {comp.weight}</li>
                   </ul>
                   <p className="text-sm text-royal font-bold mt-2">{comp.price} DA</p>
-                  <Link
-                    to={`/product/${comp.id}`}
-                    className="block mt-3 text-center text-xs text-blue-600 hover:underline"
-                  >
-                    View Details →
-                  </Link>
+                  <Link to={`/product/${comp.id}`} className="block mt-3 text-center text-xs text-blue-600 hover:underline">View Details →</Link>
                 </div>
               );
             })}

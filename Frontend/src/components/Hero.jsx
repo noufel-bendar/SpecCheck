@@ -22,7 +22,6 @@ function Hero() {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-
     fetch(`${API_BASE}/api/products/`)
       .then(async (res) => {
         if (!res.ok) {
@@ -31,26 +30,28 @@ function Hero() {
         }
         return res.json();
       })
-      .then((data) => {
-        setProducts(Array.isArray(data) ? data : []);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch products:", error);
-        setProducts([]);
-      });
+      .then((data) => setProducts(Array.isArray(data) ? data : []))
+      .catch(() => setProducts([]));
   }, []);
 
   const topProducts = Array.isArray(products) ? products.slice(0, 3) : [];
   const placeholder = 'https://placehold.co/600x450?text=No+Image';
 
+  const getImageSrc = (img) => {
+    if (!img) return placeholder;
+    let src = typeof img === 'string' ? img : '';
+    src = src.replace(/^(https?)(\/\/)/i, '$1:$2');
+    if (!/^https?:\/\//i.test(src)) {
+      src = `${API_BASE.replace(/\/$/, '')}/${src.replace(/^\/+/, '')}`;
+    }
+    return src || placeholder;
+  };
+
   return (
     <div className='pt-20 sm:pt-24 px-4 sm:px-8'>
       <div className='bg-opacity-90 p-4 sm:p-6 rounded-lg shadow-lg mb-6 min-h-[250px] sm:min-h-[320px] lg:min-h-[280px] bg-gradient-to-r from-indigo-200 to-blue-200'>
         <Slider {...settings}>
-          {topProducts.map((item) => {
-            const resolved = typeof item.image === 'string' ? item.image : '';
-            const imgSrc = resolved ? (resolved.startsWith('http') ? resolved : `${API_BASE}${resolved}`) : placeholder;
-            return (
+          {topProducts.map((item) => (
             <div key={item.id} className='flex flex-col items-center justify-center text-center gap-4 sm:pl-3 pt-12 sm:pt-0 sm:text-left order-2 sm:order-1'>
               <div className='grid grid-cols-1 sm:grid-cols-2 items-center gap-8'>
                 <div className='space-y-5 text-left sm:text-left' data-aos="fade-right">
@@ -63,17 +64,16 @@ function Hero() {
                     </button>
                   </Link>
                 </div>
-
                 <div className='order-1 sm:order-2 flex justify-center' data-aos="zoom-in">
                   <img
-                    src={imgSrc}
+                    src={getImageSrc(item.image)}
                     alt={item.title}
                     className='w-[400px] h-[400px] sm:h-[450px] sm:scale-105 lg:scale-110 object-contain mx-auto drop-shadow-[-8px-4px-6px-rgba(0,0,0,.4)]'
                   />
                 </div>
               </div>
             </div>
-          )})}
+          ))}
         </Slider>
       </div>
     </div>
