@@ -5,7 +5,7 @@
   "fields": {
     "title": "SpecCheck Pro 14",
     "model": "SC-P14-2025",
-    "image": "",
+    "image": "products/mac.png",
     "processor": "Intel Core i7-1360P",
     "cpu_cores": 12,
     "cpu_clock_speed": 4.8,
@@ -31,7 +31,7 @@
   "fields": {
     "title": "SpecCheck Gamer 15",
     "model": "SC-G15-RTX",
-    "image": "",
+    "image": "products/dell.png",
     "processor": "AMD Ryzen 7 7840HS",
     "cpu_cores": 8,
     "cpu_clock_speed": 5.1,
@@ -57,7 +57,7 @@
   "fields": {
     "title": "SpecCheck Creator 16",
     "model": "SC-C16-OLED",
-    "image": "",
+    "image": "products/pc2.png",
     "processor": "Intel Core i9-13900H",
     "cpu_cores": 14,
     "cpu_clock_speed": 5.4,
@@ -83,7 +83,7 @@
   "fields": {
     "title": "SpecCheck Student 13",
     "model": "SC-S13",
-    "image": "",
+    "image": "products/laptop.png",
     "processor": "Intel Core i5-1235U",
     "cpu_cores": 10,
     "cpu_clock_speed": 4.4,
@@ -109,7 +109,7 @@
   "fields": {
     "title": "SpecCheck Dev 15",
     "model": "SC-D15-LNX",
-    "image": "",
+    "image": "products/pngimg.com_-_laptop_PNG101804.png",
     "processor": "AMD Ryzen 9 7940HS",
     "cpu_cores": 8,
     "cpu_clock_speed": 5.2,
@@ -135,7 +135,7 @@
   "fields": {
     "title": "SpecCheck Air 13",
     "model": "SC-A13",
-    "image": "",
+    "image": "products/lapp.png",
     "processor": "Intel Core Ultra 7",
     "cpu_cores": 12,
     "cpu_clock_speed": 4.7,

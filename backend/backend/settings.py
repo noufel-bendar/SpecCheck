@@ -120,3 +120,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Ensure correct scheme and host when behind a proxy (e.g., Render)
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Helpful when building absolute URLs and handling CSRF in production
+CSRF_TRUSTED_ORIGINS = [
+    "https://specheckffii.vercel.app",
+    "https://speccheck-5.onrender.com",
+]
