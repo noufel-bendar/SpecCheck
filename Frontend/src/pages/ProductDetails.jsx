@@ -86,6 +86,8 @@ function ProductDetails() {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
+  const productImgSrc = product.image && product.image.startsWith('http') ? product.image : `${API_BASE}${product.image || ''}`;
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -97,7 +99,7 @@ function ProductDetails() {
           <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
             {product.image ? (
               <img
-                src={`${API_BASE}${product.image}`}
+                src={productImgSrc}
                 alt={product.title}
                 className="w-full h-64 object-contain bg-gray-100 rounded-xl mb-4"
               />
@@ -133,7 +135,7 @@ function ProductDetails() {
 
                 return (
                   <div key={category} className="mb-2" data-aos="fade-up" data-aos-delay={index * 60}>
-                    <div className="flex justify-between text-xs font-medium text-gray-600">
+                    <div className="flex justify-between text-xs font-medium text_GRAY-600">
                       <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
                       <span>{score} / 10</span>
                     </div>
