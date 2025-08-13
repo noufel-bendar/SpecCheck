@@ -5,7 +5,7 @@
   "fields": {
     "title": "SpecCheck Pro 14",
     "model": "SC-P14-2025",
-    "image": "products/mac.png",
+    "image": "products/MacBookPro.png",
     "processor": "Intel Core i7-1360P",
     "cpu_cores": 12,
     "cpu_clock_speed": 4.8,
@@ -31,7 +31,7 @@
   "fields": {
     "title": "SpecCheck Gamer 15",
     "model": "SC-G15-RTX",
-    "image": "products/dell.png",
+    "image": "products/nitro.png",
     "processor": "AMD Ryzen 7 7840HS",
     "cpu_cores": 8,
     "cpu_clock_speed": 5.1,
@@ -57,7 +57,7 @@
   "fields": {
     "title": "SpecCheck Creator 16",
     "model": "SC-C16-OLED",
-    "image": "products/pc2.png",
+    "image": "products/huaweiMate.png",
     "processor": "Intel Core i9-13900H",
     "cpu_cores": 14,
     "cpu_clock_speed": 5.4,
@@ -154,14 +154,169 @@
     "weight": 1.1,
     "created_at": "2025-08-12T22:43:42.470Z"
   }
-},
-{
-  "model": "contenttypes.contenttype",
-  "fields": {
-    "app_label": "store",
-    "model": "product"
-  }
-},
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "title": "SpecCheck Ultra 17",
+      "model": "SC-U17-PRO",
+      "image": "products/huaweiMate.png",
+      "processor": "Intel Core i9-14900H",
+      "cpu_cores": 16,
+      "cpu_clock_speed": 5.6,
+      "battery_life": "7",
+      "ram": 64,
+      "storage": "4TB SSD",
+      "gpu": "NVIDIA RTX 4090",
+      "gpu_score": 25000,
+      "screen_resolution": "3840x2160",
+      "refresh_rate": 144,
+      "display": "17.3\" 4K IPS",
+      "keyboard": "Mechanical RGB",
+      "os": "Windows 11 Pro",
+      "price": 3999,
+      "description": "Ultimate desktop replacement with RTX 4090 and 4K display for extreme performance.",
+      "weight": 3.2,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "title": "SpecCheck Business 14",
+      "model": "SC-B14-ENT",
+      "image": "products/MacBookPro.png",
+      "processor": "Intel Core i7-1370P",
+      "cpu_cores": 14,
+      "cpu_clock_speed": 5.0,
+      "battery_life": "11",
+      "ram": 32,
+      "storage": "1TB SSD",
+      "gpu": "Intel Iris Xe",
+      "gpu_score": 3500,
+      "screen_resolution": "2560x1600",
+      "refresh_rate": 60,
+      "display": "14\" IPS Touch",
+      "keyboard": "Backlit",
+      "os": "Windows 11 Pro",
+      "price": 1899,
+      "description": "Professional business laptop with enterprise features and long battery life.",
+      "weight": 1.4,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 9,
+    "fields": {
+      "title": "SpecCheck Streamer 15",
+      "model": "SC-S15-RTX",
+      "image": "products/nitro.png",
+      "processor": "AMD Ryzen 9 7945H",
+      "cpu_cores": 16,
+      "cpu_clock_speed": 5.4,
+      "ram": 32,
+      "storage": "2TB SSD",
+      "gpu": "NVIDIA RTX 4080",
+      "gpu_score": 20000,
+      "screen_resolution": "2560x1440",
+      "refresh_rate": 240,
+      "display": "15.6\" QHD",
+      "keyboard": "RGB Mechanical",
+      "os": "Windows 11",
+      "price": 2899,
+      "description": "High-refresh gaming and streaming laptop with RTX 4080 for content creators.",
+      "weight": 2.5,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 10,
+    "fields": {
+      "title": "SpecCheck Mini 11",
+      "model": "SC-M11-ULTRA",
+      "image": "products/spec_no_bg.png",
+      "processor": "Intel Core Ultra 5",
+      "cpu_cores": 10,
+      "cpu_clock_speed": 4.2,
+      "battery_life": "18",
+      "ram": 16,
+      "storage": "512GB SSD",
+      "gpu": "Intel Arc iGPU",
+      "gpu_score": 4000,
+      "screen_resolution": "1920x1080",
+      "refresh_rate": 60,
+      "display": "11.6\" IPS",
+      "keyboard": "Standard",
+      "os": "Windows 11",
+      "price": 899,
+      "description": "Ultra-compact laptop perfect for travel and basic computing needs.",
+      "weight": 0.9,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 11,
+    "fields": {
+      "title": "SpecCheck Workstation 16",
+      "model": "SC-W16-XEON",
+      "image": "products/huaweiMate.png",
+      "processor": "Intel Xeon W-1390P",
+      "cpu_cores": 20,
+      "cpu_clock_speed": 5.2,
+      "battery_life": "5",
+      "ram": 128,
+      "storage": "8TB SSD",
+      "gpu": "NVIDIA RTX A5000",
+      "gpu_score": 30000,
+      "screen_resolution": "3840x2400",
+      "refresh_rate": 120,
+      "display": "16\" 4K Touch",
+      "keyboard": "Professional",
+      "os": "Windows 11 Pro",
+      "price": 5999,
+      "description": "Professional workstation for CAD, 3D rendering, and scientific computing.",
+      "weight": 3.8,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 12,
+    "fields": {
+      "title": "SpecCheck Hybrid 13",
+      "model": "SC-H13-2IN1",
+      "image": "products/MacBookPro.png",
+      "processor": "Intel Core i7-1360P",
+      "cpu_cores": 12,
+      "cpu_clock_speed": 4.8,
+      "battery_life": "13",
+      "ram": 16,
+      "storage": "1TB SSD",
+      "gpu": "Intel Iris Xe",
+      "gpu_score": 3200,
+      "screen_resolution": "2560x1600",
+      "refresh_rate": 120,
+      "display": "13.3\" 2-in-1 Touch",
+      "keyboard": "Detachable",
+      "os": "Windows 11",
+      "price": 1599,
+      "description": "Versatile 2-in-1 laptop that transforms from laptop to tablet for creative work.",
+      "weight": 1.3,
+      "created_at": "2025-08-12T22:43:42.470Z"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "app_label": "store",
+      "model": "product"
+    }
+  },
 {
   "model": "contenttypes.contenttype",
   "fields": {
