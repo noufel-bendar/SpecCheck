@@ -35,3 +35,14 @@ export function fileUrl(pathOrUrl) {
   const rel = s.startsWith('/') ? s : `/${s}`;
   return `${API_BASE}${rel}`;
 }
+
+// Build a URL to a static file shipped with the frontend under /public/media/products
+// Accepts either a relative path like 'products/mac.png' or an absolute URL and uses the basename
+export function staticMediaUrl(pathOrUrl) {
+  if (!pathOrUrl) return '';
+  const str = String(pathOrUrl).trim();
+  const parts = str.split(/[\\/]+/); // split on both / and \\
+  const filename = parts[parts.length - 1];
+  if (!filename) return '';
+  return `/media/products/${filename}`;
+}

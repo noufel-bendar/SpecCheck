@@ -4,7 +4,7 @@ import Rating from "../utils/Rating";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "../components/Header";
-import { API_BASE, fileUrl } from "../utils/config";
+import { API_BASE, staticMediaUrl } from "../utils/config";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -88,7 +88,7 @@ function ProductDetails() {
 
   const placeholder = 'https://placehold.co/800x480?text=No+Image';
   const resolved = typeof product.image === 'string' ? product.image : '';
-  const productImgSrc = resolved ? fileUrl(resolved) : placeholder;
+  const productImgSrc = resolved ? staticMediaUrl(resolved) : placeholder;
 
   return (
     <div className="min-h-screen">
@@ -169,7 +169,7 @@ function ProductDetails() {
             <h4 className="text-xl font-semibold text-gray-200 tracking-wide">Closest Competitors</h4>
             {competitors.map(({ product: comp }, idx) => {
               const compResolved = typeof comp.image === 'string' ? comp.image : '';
-              const compImgSrc = compResolved ? fileUrl(compResolved) : placeholder;
+              const compImgSrc = compResolved ? staticMediaUrl(compResolved) : placeholder;
               return (
                 <div
                   key={comp.id}

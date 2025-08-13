@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { fileUrl } from "../utils/config";
+import { fileUrl, staticMediaUrl } from "../utils/config";
 
 
 function ProductCard({ id,title, model, image, price, description }) {
   const placeholder = 'https://placehold.co/400x300?text=No+Image';
   const resolved = typeof image === 'string' ? image : '';
-  const imgSrc = resolved ? fileUrl(resolved) : placeholder;
+  const imgSrc = resolved ? staticMediaUrl(resolved) : placeholder;
   return (
     <div
       className="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full"
