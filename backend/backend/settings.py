@@ -55,12 +55,14 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://specheckffii.vercel.app",
+    "https://spec-check-six.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
 # Optional: if you need to POST from the frontend domain
 CSRF_TRUSTED_ORIGINS = [
     "https://specheckffii.vercel.app",
+    "https://spec-check-six.vercel.app",
 ]
 
 ROOT_URLCONF = 'backend.urls'
